@@ -69,21 +69,8 @@ public class ActividadesList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Actividad act = listaActividades.get(position);
                 Log.i("ACT", "click en el elemento " + position + " de mi ListView");
+                mc.setSelectecActivity(act);
                 Intent intent = new Intent(getApplicationContext(), Actividad_Detalle.class);
-                intent.putExtra("id",act.getID());
-                intent.putExtra("name",act.getNombre());
-                intent.putExtra("description",act.getDescripcion());
-                intent.putExtra("date",act.getFecha());
-                intent.putExtra("location",act.getLugar());
-                intent.putExtra("type",act.getTipo());
-                intent.putExtra("place",act.getSede());
-                intent.putExtra("urlImagen",act.getUrlImagen());
-                intent.putExtra("id_user",act.getFKCuenta());
-                intent.putExtra("timeI",act.getHoraI());
-                intent.putExtra("timeF",act.getHoraF());
-                intent.putExtra("state",act.getEstado());
-                intent.putExtra("assistance",act.getAsistencia());
-                intent.putExtra("space",act.getCupo());
                 startActivity(intent);
             }
         });

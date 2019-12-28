@@ -9,10 +9,12 @@
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
         android:layout_marginTop="20dp"
+        android:text="TITULO"
+        android:textAlignment="center"
         android:textColor="@color/black"
-        android:text="TITULO" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -40,20 +42,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="130dp"
+        android:layout_marginRight="50dp"
         android:orientation="horizontal" >
 
         <ImageView
             android:id="@+id/imageView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/baseline_access_time_black_18dp" />
 
         <TextView
             android:id="@+id/time"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginLeft="20dp"
             android:text="hora"
             android:textColor="@color/black" />
     </LinearLayout>
@@ -62,20 +67,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="130dp"
+        android:layout_marginRight="50dp"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/imageView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/baseline_room_black_18dp" />
 
         <TextView
             android:id="@+id/location"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginLeft="20dp"
             android:text="lugar"
             android:textColor="@color/black" />
     </LinearLayout>
@@ -84,20 +92,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="130dp"
+        android:layout_marginRight="50dp"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/imageView14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/baseline_local_offer_black_18dp" />
 
         <TextView
             android:id="@+id/type"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginLeft="20dp"
             android:text="ubicacion"
             android:textColor="@color/black" />
     </LinearLayout>

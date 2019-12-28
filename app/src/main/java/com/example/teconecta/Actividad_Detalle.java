@@ -15,21 +15,10 @@ public class Actividad_Detalle extends AppCompatActivity {
 
     private Actividad thisActividad;
 
+    private MainController mc;
 
-    private String id;
-    private String nombre;
-    private String descripcion;
-    private String fecha;
-    private String lugar;
-    private String tipo;
-    private String Sede;
-    private String urlImagen;
-    private String horaI;
-    private String horaF;
-    private String id_user;
-    private boolean asistencia;
-    private String estado;
-    private int cupo;
+
+
 
 
 
@@ -39,18 +28,15 @@ public class Actividad_Detalle extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad__detalle);
 
+        mc =  MainController.getInstance();
+
         name = findViewById(R.id.name);
         time = findViewById(R.id.time);
         location = findViewById(R.id.location);
         type = findViewById(R.id.type);
         detail = findViewById(R.id.details);
 
-
-        Intent intent = this.getIntent();
-        thisActividad = new Actividad(intent.getStringExtra("id"),intent.getStringExtra("name"),intent.getStringExtra("description"),intent.getStringExtra("date"),
-                intent.getStringExtra("location"),intent.getStringExtra("type"),intent.getStringExtra("place"),intent.getStringExtra("urlImagen"),
-                intent.getStringExtra("timeI"),intent.getStringExtra("timeF"),intent.getStringExtra("id_user"),intent.getStringExtra("state"),
-                intent.getBooleanExtra("assistance",false),intent.getIntExtra("space",0));
+        this.thisActividad = mc.getSelectecActivity();
 
         name.setText(thisActividad.getNombre());
         time.setText(thisActividad.getHoraI()+" - "+thisActividad.getHoraF());

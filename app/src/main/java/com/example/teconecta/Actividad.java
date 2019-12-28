@@ -35,6 +35,10 @@ public class Actividad {
         this.Cupo = space;
     }
 
+    public Actividad(){
+
+    }
+
 
 
 

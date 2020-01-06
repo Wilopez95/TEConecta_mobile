@@ -1,9 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Actividad_Register">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:orientation="vertical" android:layout_width="match_parent"
+android:background="@color/white"
+android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/dark_blue"
+        android:orientation="horizontal"></LinearLayout>
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="90dp"
+        android:layout_marginRight="90dp"
+        android:layout_marginTop="70dp"
+        android:ems="10"
+        android:textCursorDrawable="@color/black"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/black"
+        android:hint="Nombre"
+        android:textColorHint="#a8a8a8"
+        android:textAlignment="center"
+        android:inputType="textPersonName"
+         />
+
+    <EditText
+        android:id="@+id/passport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="90dp"
+        android:layout_marginRight="90dp"
+        android:layout_marginTop="70dp"
+        android:ems="10"
+        android:textCursorDrawable="@color/black"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/black"
+        android:hint="Carné"
+        android:textColorHint="#a8a8a8"
+        android:textAlignment="center"
+        android:inputType="textPersonName"
+         />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="90dp"
+        android:layout_marginRight="90dp"
+        android:layout_marginTop="70dp"
+        android:ems="10"
+        android:textCursorDrawable="@color/black"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/black"
+        android:hint="Correo"
+        android:textColorHint="#a8a8a8"
+        android:textAlignment="center"
+        android:inputType="textPersonName"
+         />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="90dp"
+        android:layout_marginRight="90dp"
+        android:layout_marginTop="70dp"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_blue"
+        android:text="Registrarse" />
+</LinearLayout>

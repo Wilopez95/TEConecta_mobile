@@ -36,8 +36,11 @@ public class ActividadesList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         LvActividades = findViewById(R.id.ListViewActividades);
         mc =  MainController.getInstance();
+        mc.setActiveContex(this);
+        mc.getData();
 
         //DEV TEST DELETE ON PRODUCTION!!
         //Llamar funcion de llenado del controlador

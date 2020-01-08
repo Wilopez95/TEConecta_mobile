@@ -1,5 +1,6 @@
 package com.example.teconecta;
 
+import android.content.Context;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ public class MainController {
     private ArrayList<Actividad> lista_Actividades_Filtrada = new ArrayList<>();
     private Actividad selectecActivity;
     private Contacto selectecContact;
+    private Context ActiveContex;
 
     private ArrayList<Contacto> lista_Contactos = new ArrayList<>();
 
@@ -41,6 +43,8 @@ public class MainController {
         lista_Actividades.add(new Actividad("7","Alajuela1","Nombre 6","12/12/2020","Lugar","Cultural","Alajuela","urlimage","20:00","23:00","ASODEC","Estado",true,20));
         lista_Actividades.add(new Actividad("8","San Jose2","Nombre 7","12/12/2020","Lugar","Ludica","San Jose","urlimage","20:00","23:00","ASODEC","Estado",true,20));
         lista_Actividades.add(new Actividad("9","Limon2","Nombre 8","12/12/2020","Lugar","Cultural","Limon","urlimage","20:00","23:00","ASODEC","Estado",true,20));
+
+
 
         lista_Contactos.add(new Contacto("1","Contato1","Some contact","8888888","B3","Cartago","http//:imagen.com","Someone"));
         lista_Contactos.add(new Contacto("2","Contato2","Some contact","8888888","B3","Cartago","http//:imagen.com","Someone"));
@@ -114,6 +118,15 @@ public class MainController {
         }
     }
 
+    public void getData(){
+        ConexionPool ncp = new ConexionPool(ActiveContex);
+        ncp.getActivities();
+        ncp.getContacs();
+
+        this.lista_Actividades.addAll(ncp.getListaActividades());
+
+    }
+
 
     public Actividad getSelectecActivity(){
         return selectecActivity;
@@ -131,5 +144,11 @@ public class MainController {
         this.selectecContact = ctc;
     }
 
+    public Context getActiveContex(){
+        return ActiveContex;
+    }
 
+    public void setActiveContex(Context activeContex) {
+        this.ActiveContex = activeContex;
+    }
 }

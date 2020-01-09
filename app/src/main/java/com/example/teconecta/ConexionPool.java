@@ -19,21 +19,34 @@ import java.util.ArrayList;
 
 public class ConexionPool {
 
+    private static ConexionPool singleton;
     private RequestQueue queue;
     private ArrayList<Actividad> lista_Actividades = new ArrayList<Actividad>();
+    private boolean dataflag = false;
 
-    public ConexionPool(Context context){
 
+
+    private static synchronized void createinstance() {
+        if(singleton == null){
+            singleton = new ConexionPool();
+        }
+    }
+
+    public static ConexionPool getInstance(){
+
+        if(singleton == null){
+            createinstance();
+        }
+        return singleton;
+    }
+
+    public void initQueue(Context context){
         queue = Volley.newRequestQueue(context);
     }
 
-    public interface VolleyCallback{
-
-        public void onSuccess(boolean status);}
-
 
     public void getActivities(){
-        //Log.d("RESPONSE", "GET ACTIVIDADES");
+        Log.d("RESPONSE", "GET ACTIVIDADES");
 
         String url = "https://teconecta-noisy-rhinocerous-te.mybluemix.net/allactivities";
 
@@ -62,7 +75,8 @@ public class ConexionPool {
                         lista_Actividades.add(new Actividad(id,name,description,date,location,type,place,urlImgActivity,timeI,timeF,fk_user,state,Boolean.parseBoolean(assistance),Integer.parseInt(space)));
 
                     }
-                    Log.d("RESPONSE.SIZE--2",Integer.toString(lista_Actividades.size()));
+                    dataflag = true;
+                    Log.d("RESPONSE.SIZE-->",Integer.toString(lista_Actividades.size()));
 
                 }catch (JSONException e) {
                     e.printStackTrace();
@@ -80,8 +94,6 @@ public class ConexionPool {
         });
 
         queue.add(request);
-        Log.d("RESPONSE.SIZE",Integer.toString(lista_Actividades.size()));
-
     }
 
     public void getContacs(){
@@ -111,6 +123,10 @@ public class ConexionPool {
 
     public ArrayList<Actividad> getListaActividades(){
         return  lista_Actividades;
+    }
+
+    public boolean getDataFlag(){
+        return dataflag;
     }
 
 

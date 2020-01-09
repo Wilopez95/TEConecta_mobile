@@ -1,16 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/content_base"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ActividadesList">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+
+    <RelativeLayout
+        android:id="@+id/header_RL"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="80dp"
+        android:background="@color/dark_blue">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,8 +22,8 @@
                 android:layout_width="10dp"
                 android:layout_height="80dp"
 
-                android:layout_weight="1"
                 android:layout_marginLeft="3dp"
+                android:layout_weight="1"
                 android:text="Filtrar :"
                 android:textAlignment="center"
                 android:textColor="@color/white"
@@ -36,8 +35,8 @@
                 android:id="@+id/spinner_categories"
                 android:layout_width="65dp"
                 android:layout_height="80dp"
-                android:paddingBottom="10dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:paddingBottom="10dp" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -55,24 +54,54 @@
                 android:id="@+id/spinner_selection"
                 android:layout_width="65dp"
                 android:layout_height="80dp"
-                android:paddingBottom="10dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:paddingBottom="10dp" />
 
             <ImageButton
                 android:id="@+id/Contacs"
                 android:layout_width="10dp"
                 android:layout_height="80dp"
-                android:layout_weight="1"
                 android:layout_marginRight="3dp"
+                android:layout_weight="1"
                 android:background="@color/dark_blue"
                 app:srcCompat="@drawable/baseline_perm_contact_calendar_white_24dp" />
 
         </LinearLayout>
 
+
+
+    </RelativeLayout>
+
+
+    <FrameLayout
+        android:id="@+id/frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/footer_RL"
+        android:layout_below="@+id/header_RL">
         <ListView
             android:id="@+id/ListViewActividades"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/footer_RL"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/dark_blue">
+
+        <TextView
+            android:id="@+id/footer_txt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:text="Footer"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

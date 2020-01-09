@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -13,12 +14,19 @@ import java.util.concurrent.Delayed;
 public class splash_activity extends AppCompatActivity {
 
     private final int DURACION_SPLASH = 3000;
+    private MainController mc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash_activity);
+        mc =  MainController.getInstance();
+        mc.setActiveContex(this);
+        mc.getData();
+
+
+
 
         new Handler().postDelayed(new Runnable(){
             public void run(){

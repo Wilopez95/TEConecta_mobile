@@ -1,6 +1,7 @@
 package com.example.teconecta;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ public class MainController {
     private Actividad selectecActivity;
     private Contacto selectecContact;
     private Context ActiveContex;
+    private ConexionPool cp;
+
 
     private ArrayList<Contacto> lista_Contactos = new ArrayList<>();
 
@@ -119,11 +122,14 @@ public class MainController {
     }
 
     public void getData(){
-        ConexionPool ncp = new ConexionPool(ActiveContex);
-        ncp.getActivities();
-        ncp.getContacs();
+        Log.d("RESPONSE", "GET DATA");
+        cp =  ConexionPool.getInstance();
+        cp.initQueue(ActiveContex);
+        cp.getActivities();
 
-        this.lista_Actividades.addAll(ncp.getListaActividades());
+        Log.d("RESPONSE", "WAITING DATA"+ Integer.toString(cp.getListaActividades().size()));
+
+
 
     }
 

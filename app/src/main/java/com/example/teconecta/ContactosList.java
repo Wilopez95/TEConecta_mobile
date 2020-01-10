@@ -10,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class ContactosList extends AppCompatActivity {
     private ListView LvContactos;
@@ -28,10 +30,14 @@ public class ContactosList extends AppCompatActivity {
         mc =  MainController.getInstance();
         mc.setActiveContex(this);
 
+
+
+        this.listaContactos.addAll(mc.getListContac());
+
+
         AdaptadorContacto = new ContactoAdapter(this,listaContactos);
         LvContactos.setAdapter(AdaptadorContacto);
 
-        this.listaContactos.addAll(mc.getListContac());
 
         LvContactos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

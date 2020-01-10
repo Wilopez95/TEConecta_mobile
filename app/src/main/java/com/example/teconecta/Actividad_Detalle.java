@@ -17,6 +17,7 @@ public class Actividad_Detalle extends AppCompatActivity {
     private TextView type;
     private TextView detail;
     private TextView user;
+    private TextView registertxt;
 
     private ImageButton register;
     private ImageButton notificate;
@@ -24,6 +25,9 @@ public class Actividad_Detalle extends AppCompatActivity {
     private LinearLayout contac;
 
     private Actividad thisActividad;
+
+    private String fk_cuenta;
+    private Contacto contacto;
 
     private MainController mc;
 
@@ -46,6 +50,7 @@ public class Actividad_Detalle extends AppCompatActivity {
         type = findViewById(R.id.type);
         detail = findViewById(R.id.details);
         user = findViewById(R.id.user);
+        registertxt= findViewById(R.id.registertxt);
 
         register = findViewById(R.id.register_button);
         notificate = findViewById(R.id.notification_button);
@@ -59,7 +64,14 @@ public class Actividad_Detalle extends AppCompatActivity {
         location.setText(thisActividad.getLugar()+" - "+thisActividad.getSede());
         type.setText(thisActividad.getTipo());
         detail.setText(thisActividad.getDescripcion());
-        user.setText(thisActividad.getFKCuenta());
+        this.fk_cuenta = thisActividad.getFKCuenta();
+        contacto = mc.getContactobyID(fk_cuenta);
+        user.setText(contacto.getNombre());
+
+        if(!thisActividad.getAsistencia()){
+            registertxt.setVisibility(View.INVISIBLE);
+            register.setVisibility(View.INVISIBLE);
+        }
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +92,7 @@ public class Actividad_Detalle extends AppCompatActivity {
         contac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mc.setSelectecContact(contacto);
                 Intent intent = new Intent(getApplicationContext(), Contacto_Detalle.class);
                 startActivity(intent);
             }

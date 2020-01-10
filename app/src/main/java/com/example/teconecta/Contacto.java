@@ -90,4 +90,6 @@ public class Contacto {
     public void setEncargado(String encargado) {
         Encargado = encargado;
     }
+
+
 }

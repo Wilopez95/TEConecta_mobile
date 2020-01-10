@@ -13,6 +13,7 @@ public class Contacto_Detalle extends AppCompatActivity {
     private  TextView place;
     private  TextView email;
     private  TextView manager;
+    private Contacto thisContacto;
 
     private MainController mc;
 
@@ -23,6 +24,7 @@ public class Contacto_Detalle extends AppCompatActivity {
 
 
         mc =  MainController.getInstance();
+        thisContacto = mc.getSelectecContact();
 
         name = findViewById(R.id.name);
         description = findViewById(R.id.description);
@@ -32,6 +34,12 @@ public class Contacto_Detalle extends AppCompatActivity {
         email = findViewById(R.id.email);
         manager = findViewById(R.id.manager);
 
+        name.setText(thisContacto.getNombre());
+        description.setText(thisContacto.getDescripcion());
+        phone.setText("Teléfono : "+thisContacto.getTelefono());
+        location.setText("Ubicacion : "+thisContacto.getDireccion());
+        place.setText("Sede : "+thisContacto.getSede());
+        manager.setText("Encargado : "+thisContacto.getEncargado());
 
     }
 }

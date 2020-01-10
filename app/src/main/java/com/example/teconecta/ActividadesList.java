@@ -74,7 +74,7 @@ public class ActividadesList extends AppCompatActivity {
 
 
         arraySpinnerCategory = new String[] {
-                "Todos", "Sedes", "Tipo", "Categoria"
+                "Todos", "Sedes", "Tipo Evento", "Organizador"
         };
 
         ArrayAdapter<String> adapterCategory = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, arraySpinnerCategory);
@@ -124,7 +124,7 @@ public class ActividadesList extends AppCompatActivity {
                 break;
             case 2:
                 arraySpinnerFilter = new  String[] {
-                        "Deportiva","Ludica","Cultura","Educativa"
+                        "Cultural","Deportiva","Educativa","Ludica","Otros"
                 };
                 break;
             case 3:

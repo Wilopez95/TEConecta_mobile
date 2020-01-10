@@ -37,6 +37,8 @@ public class ContactosList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.i("Click", "click en el elemento " + position + " de mi ListView");
+                Contacto ctc = listaContactos.get(position);
+                mc.setSelectecContact(ctc);
                 Intent intent = new Intent(getApplicationContext(), Contacto_Detalle.class);
                 startActivity(intent);
             }

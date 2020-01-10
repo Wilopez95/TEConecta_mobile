@@ -22,27 +22,26 @@ public class MainController {
     private ArrayList<Contacto> lista_Contactos = new ArrayList<>();
 
 
-
     private static synchronized void createinstance() {
-        if(singleton == null){
+        if (singleton == null) {
             singleton = new MainController();
         }
     }
 
-    public static MainController getInstance(){
-        if(singleton == null){
+    public static MainController getInstance() {
+        if (singleton == null) {
             createinstance();
         }
         return singleton;
     }
 
 
-    public ArrayList<Contacto> getListContac(){
+    public ArrayList<Contacto> getListContac() {
         return lista_Contactos;
     }
 
-    public ArrayList<Actividad> getListActivities(int category , int filter ){
-        switch (category){
+    public ArrayList<Actividad> getListActivities(int category, int filter) {
+        switch (category) {
             case 1:
                 //SEDE
                 switch (filter) {
@@ -58,8 +57,8 @@ public class MainController {
                     case 1:
                         //SAN JOSE
                         lista_Actividades_Filtrada.clear();
-                        for(int i=0; i<lista_Actividades.size(); i++){
-                            if (lista_Actividades.get(i).getSede()=="San Jose"){
+                        for (int i = 0; i < lista_Actividades.size(); i++) {
+                            if (lista_Actividades.get(i).getSede() == "San Jose") {
                                 lista_Actividades_Filtrada.add(lista_Actividades.get(i));
                             }
                         }
@@ -67,8 +66,8 @@ public class MainController {
                     case 2:
                         //SAN CARLOS
                         lista_Actividades_Filtrada.clear();
-                        for(int i=0; i<lista_Actividades.size(); i++){
-                            if (lista_Actividades.get(i).getSede()== "San Carlos"){
+                        for (int i = 0; i < lista_Actividades.size(); i++) {
+                            if (lista_Actividades.get(i).getSede() == "San Carlos") {
                                 lista_Actividades_Filtrada.add(lista_Actividades.get(i));
                             }
                         }
@@ -76,8 +75,8 @@ public class MainController {
                     case 3:
                         //LIMON
                         lista_Actividades_Filtrada.clear();
-                        for(int i=0; i<lista_Actividades.size(); i++){
-                            if (lista_Actividades.get(i).getSede()== "Limon"){
+                        for (int i = 0; i < lista_Actividades.size(); i++) {
+                            if (lista_Actividades.get(i).getSede() == "Limon") {
                                 lista_Actividades_Filtrada.add(lista_Actividades.get(i));
                             }
                         }
@@ -85,8 +84,8 @@ public class MainController {
                     case 4:
                         //ALAJUELA
                         lista_Actividades_Filtrada.clear();
-                        for(int i=0; i<lista_Actividades.size(); i++){
-                            if (lista_Actividades.get(i).getSede()== "Alajuela"){
+                        for (int i = 0; i < lista_Actividades.size(); i++) {
+                            if (lista_Actividades.get(i).getSede() == "Alajuela") {
                                 lista_Actividades_Filtrada.add(lista_Actividades.get(i));
                             }
                         }
@@ -101,9 +100,9 @@ public class MainController {
         }
     }
 
-    public void getData(){
+    public void getData() {
 
-        cp =  ConexionPool.getInstance();
+        cp = ConexionPool.getInstance();
         cp.initQueue(ActiveContex);
         cp.getActivities(new ServerCallback() {
             @Override
@@ -119,16 +118,14 @@ public class MainController {
         });
 
 
-
-
     }
 
 
-    public Actividad getSelectecActivity(){
+    public Actividad getSelectecActivity() {
         return selectecActivity;
     }
 
-    public void setSelectecActivity(Actividad act){
+    public void setSelectecActivity(Actividad act) {
         this.selectecActivity = act;
     }
 
@@ -136,9 +133,10 @@ public class MainController {
         return selectecContact;
     }
 
-    public void  setSelectecContact(Contacto ctc){
+    public void setSelectecContact(Contacto ctc) {
         this.selectecContact = ctc;
     }
+
 
     public Context getActiveContex(){
         return ActiveContex;

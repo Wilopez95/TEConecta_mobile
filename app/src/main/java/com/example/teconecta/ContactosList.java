@@ -26,6 +26,7 @@ public class ContactosList extends AppCompatActivity {
 
         LvContactos = findViewById(R.id.ListViewContactos);
         mc =  MainController.getInstance();
+        mc.setActiveContex(this);
 
         AdaptadorContacto = new ContactoAdapter(this,listaContactos);
         LvContactos.setAdapter(AdaptadorContacto);

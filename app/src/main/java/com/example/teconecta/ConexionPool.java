@@ -22,7 +22,7 @@ public class ConexionPool {
     private static ConexionPool singleton;
     private RequestQueue queue;
     private ArrayList<Actividad> lista_Actividades = new ArrayList<Actividad>();
-    private boolean dataflag = false;
+    private ArrayList<Contacto> lista_Contactos = new ArrayList<>();
 
 
 
@@ -45,7 +45,7 @@ public class ConexionPool {
     }
 
 
-    public void getActivities(){
+    public void getActivities(final ServerCallback callback){
         Log.d("RESPONSE", "GET ACTIVIDADES");
 
         String url = "https://teconecta-noisy-rhinocerous-te.mybluemix.net/allactivities";
@@ -75,8 +75,8 @@ public class ConexionPool {
                         lista_Actividades.add(new Actividad(id,name,description,date,location,type,place,urlImgActivity,timeI,timeF,fk_user,state,Boolean.parseBoolean(assistance),Integer.parseInt(space)));
 
                     }
-                    dataflag = true;
-                    Log.d("RESPONSE.SIZE-->",Integer.toString(lista_Actividades.size()));
+                    callback.onSuccess(response);
+
 
                 }catch (JSONException e) {
                     e.printStackTrace();
@@ -96,19 +96,34 @@ public class ConexionPool {
         queue.add(request);
     }
 
-    public void getContacs(){
+    public void getContacs(final ServerCallback callback){
         //Log.d("RESPONSE", "GET CONTACS");
         String url = "https://teconecta-noisy-rhinocerous-te.mybluemix.net/account";
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,url,null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                //Log.d("RESPONSE.OK", response.toString());
+                try {
+                    for (int i = 0;i<response.length();i++){
+                        JSONObject contacto = new JSONObject(response.get(i).toString());
+                        String id = contacto.getString("id");
+                        String name = contacto.getString("name");
+                        String description = contacto.getString("description");
+                        String phone = contacto.getString("phone");
+                        String location = contacto.getString("location");
+                        String place = contacto.getString("place");  //SEDE
+                        String urlImgProfile =  contacto.getString("urlImgProfile");
+                        String manager = contacto.getString("manager");
 
+                        lista_Contactos.add(new Contacto(id,name,description,phone,location,place,urlImgProfile,manager));
+                    }
+                    callback.onSuccess(response);
 
+                }catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         },
-
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
@@ -125,9 +140,11 @@ public class ConexionPool {
         return  lista_Actividades;
     }
 
-    public boolean getDataFlag(){
-        return dataflag;
+    public ArrayList<Contacto> getLista_Contactos(){
+        return  lista_Contactos;
     }
+
+
 
 
 }

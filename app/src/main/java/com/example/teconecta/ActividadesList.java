@@ -42,12 +42,6 @@ public class ActividadesList extends AppCompatActivity {
         mc.setActiveContex(this);
 
 
-        //DEV TEST DELETE ON PRODUCTION!!
-        //Llamar funcion de llenado del controlador
-        mc.filltest();
-        //DEV TEST DELETE ON PRODUCTION!!
-
-
         adaptadorActividades = new ActividadAdapter(this,listaActividades);
         LvActividades.setAdapter(adaptadorActividades);
 

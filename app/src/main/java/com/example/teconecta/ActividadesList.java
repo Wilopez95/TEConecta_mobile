@@ -3,6 +3,7 @@ package com.example.teconecta;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -28,6 +30,12 @@ public class ActividadesList extends AppCompatActivity {
     private String[] arraySpinnerFilter;
     private int cagtegoryid;
     private int filterid;
+    private boolean termsflag;
+    private  Button termsButton;
+
+
+    private RelativeLayout terms;
+
 
     private ArrayList<Actividad> listaActividades = new ArrayList<>();
 
@@ -42,6 +50,10 @@ public class ActividadesList extends AppCompatActivity {
         mc.setActiveContex(this);
 
 
+
+
+
+
         adaptadorActividades = new ActividadAdapter(this,listaActividades);
         LvActividades.setAdapter(adaptadorActividades);
 
@@ -49,6 +61,34 @@ public class ActividadesList extends AppCompatActivity {
         filter = findViewById(R.id.spinner_selection);
 
         contacs= findViewById(R.id.Contacs);
+
+        terms = findViewById(R.id.terms);
+        termsButton = findViewById(R.id.ternsButton);
+
+        SharedPreferences prefs = getSharedPreferences("My_terms_flag", MODE_PRIVATE);
+        termsflag = prefs.getBoolean("Flag",false);
+        if(termsflag){
+            terms.setVisibility(View.INVISIBLE);
+        }
+
+
+
+
+
+
+        termsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                terms.setEnabled(false);
+                terms.setVisibility(View.INVISIBLE);
+                SharedPreferences.Editor editor = getSharedPreferences("My_terms_flag", MODE_PRIVATE).edit();
+                editor.putBoolean("Flag", true);
+                editor.apply();
+            }
+        });
+
+
+
 
 
         contacs.setOnClickListener(new View.OnClickListener() {

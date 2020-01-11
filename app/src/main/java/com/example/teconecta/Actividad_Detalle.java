@@ -1,14 +1,20 @@
 package com.example.teconecta;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Actividad_Detalle extends AppCompatActivity {
     private TextView name;
@@ -18,6 +24,7 @@ public class Actividad_Detalle extends AppCompatActivity {
     private TextView detail;
     private TextView user;
     private TextView registertxt;
+    private TextView date;
 
     private ImageButton register;
     private ImageButton notificate;
@@ -28,6 +35,8 @@ public class Actividad_Detalle extends AppCompatActivity {
 
     private String fk_cuenta;
     private Contacto contacto;
+
+    NotificationCompat.Builder notificacion;
 
     private MainController mc;
 
@@ -52,6 +61,7 @@ public class Actividad_Detalle extends AppCompatActivity {
         user = findViewById(R.id.user);
         registertxt= findViewById(R.id.registertxt);
 
+        date = findViewById(R.id.date);
         register = findViewById(R.id.register_button);
         notificate = findViewById(R.id.notification_button);
 
@@ -67,6 +77,8 @@ public class Actividad_Detalle extends AppCompatActivity {
         this.fk_cuenta = thisActividad.getFKCuenta();
         contacto = mc.getContactobyID(fk_cuenta);
         user.setText(contacto.getNombre());
+        date.setText(mc.formatedDate("\n",thisActividad.getFecha()));
+
 
         if(!thisActividad.getAsistencia()){
             registertxt.setVisibility(View.INVISIBLE);
@@ -98,6 +110,6 @@ public class Actividad_Detalle extends AppCompatActivity {
             }
         });
 
-
     }
+
 }

@@ -29,13 +29,16 @@
             app:srcCompat="@drawable/expre" />
 
         <TextView
+            android:id="@+id/date"
             android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_height="70dp"
             android:layout_centerHorizontal="true"
             android:background="@color/red"
             android:text="HOY"
             android:textAlignment="center"
-            android:textColor="#ffffffff" />
+            android:textColor="#ffffffff"
+            android:textSize="24sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <LinearLayout

@@ -8,11 +8,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class ActividadAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<Actividad> listaActividades;
+    private MainController mc =  MainController.getInstance();
 
     public ActividadAdapter(Context context, ArrayList<Actividad> listaActividades) {
         this.context = context;
@@ -44,12 +47,16 @@ public class ActividadAdapter extends BaseAdapter {
         TextView hora = convertView.findViewById(R.id.hora);
         TextView ubicacion = convertView.findViewById(R.id.ubicacion);
         TextView tipo = convertView.findViewById(R.id.tipo);
+        TextView date = convertView.findViewById(R.id.date);
 
 
         nombre.setText(Item.getNombre().toUpperCase());
         hora.setText(Item.getHoraI()+" - "+Item.getHoraF());
         ubicacion.setText(Item.getLugar());
         tipo.setText(Item.getTipo());
+        date.setText(mc.formatedDate(" ",Item.getFecha()));
         return convertView;
     }
+
+
 }

@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
 
+
     <RelativeLayout
         android:id="@+id/header_RL"
         android:layout_width="match_parent"
@@ -102,6 +103,39 @@
             android:text="Acerca de..."
             android:textSize="20dp" />
 
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/terms"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_horizontal"
+        android:padding="12dip"
+        android:text="HOY"
+        android:background="#99000000"
+        android:textColor="@color/white" >
+
+        <TextView
+            android:id="@+id/TermsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="20dp"
+            android:textAlignment="center"
+            android:text="Aqui van todos los temrinos y condiciones del sistema"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/ternsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/TermsText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:background="@color/dark_blue"
+            android:text="Aceptar terminos y condiciones" />
     </RelativeLayout>
 
 </RelativeLayout>

@@ -191,6 +191,12 @@ public class MainController {
 
     }
 
+    public void registerAssistance(String fkact , String name,String email,String credential , String state){
+        cp = ConexionPool.getInstance();
+        cp.initQueue(ActiveContex);
+        cp.RegisterAssistance(fkact,name,email,credential,state);
+    }
+
 
     public Actividad getSelectecActivity() {
         return selectecActivity;

@@ -109,7 +109,5 @@ public class Actividad_Detalle extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
-
 }

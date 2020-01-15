@@ -4,7 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,6 +46,7 @@ public class Actividad_Detalle extends AppCompatActivity {
     private Contacto contacto;
 
     NotificationCompat.Builder notificacion;
+    private static final int idUnica = 123456;
 
     private MainController mc;
 
@@ -85,6 +91,10 @@ public class Actividad_Detalle extends AppCompatActivity {
         user.setText(contacto.getNombre());
         date.setText(mc.formatedDate("\n",thisActividad.getFecha()));
 
+        notificacion = new NotificationCompat.Builder(this);
+        notificacion.setAutoCancel(true);
+
+
 
         Picasso.get()
                 .load(thisActividad.getUrlImagen())
@@ -110,7 +120,7 @@ public class Actividad_Detalle extends AppCompatActivity {
         notificate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "¡Se le notificara 30 minutos previo a este evento!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "NOTIFICACION", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -123,4 +133,5 @@ public class Actividad_Detalle extends AppCompatActivity {
             }
         });
     }
+    
 }

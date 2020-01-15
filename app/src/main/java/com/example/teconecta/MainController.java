@@ -6,6 +6,7 @@ import android.util.Log;
 
 import org.json.JSONArray;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,10 +17,12 @@ public class MainController {
     private static MainController singleton;
     private ArrayList<Actividad> lista_Actividades = new ArrayList<>();
     private ArrayList<Actividad> lista_Actividades_Filtrada = new ArrayList<>();
+    private ArrayList<String> listaCuentasIDs = new ArrayList<>();
     private Actividad selectecActivity;
     private Contacto selectecContact;
     private Context ActiveContex;
     private ConexionPool cp;
+    private boolean FlagActByUsr = false;
 
 
     private ArrayList<Contacto> lista_Contactos = new ArrayList<>();
@@ -64,6 +67,16 @@ public class MainController {
 
     public ArrayList<Contacto> getListContac() {
         return lista_Contactos;
+    }
+
+    public ArrayList<Actividad> getLista_Actividadesbyaccount(String user){
+        lista_Actividades_Filtrada.clear();
+        for (int i = 0; i < lista_Actividades.size(); i++) {
+            if (lista_Actividades.get(i).getFKCuenta().equals(user)) {
+                lista_Actividades_Filtrada.add(lista_Actividades.get(i));
+            }
+        }
+        return lista_Actividades_Filtrada;
     }
 
     public ArrayList<Actividad> getListActivities(int category, int filter) {
@@ -173,6 +186,22 @@ public class MainController {
         }
     }
 
+    public String[] getIDLiscaAcc(){
+        String[] lista = new String[lista_Contactos.size()];
+        for (int i = 0; i< lista_Contactos.size(); i++){
+            lista[i]=lista_Contactos.get(i).getID();
+        }
+        return lista;
+    }
+
+    public String[] getLiscaAcc(){
+        String[] lista = new String[lista_Contactos.size()];
+        for (int i = 0; i< lista_Contactos.size(); i++){
+            lista[i]=lista_Contactos.get(i).getNombre();
+        }
+        return lista;
+    }
+
     public void getData() {
 
         cp = ConexionPool.getInstance();
@@ -192,6 +221,14 @@ public class MainController {
         });
 
 
+    }
+
+    public void setFlagActByUser(boolean flag){
+        this.FlagActByUsr = flag;
+    }
+
+    public boolean getFlagActByUser(){
+        return FlagActByUsr;
     }
 
     public void registerAssistance(String fkact , String name,String email,String credential , String state){

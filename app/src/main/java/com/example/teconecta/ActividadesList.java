@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,10 @@ public class ActividadesList extends AppCompatActivity {
     private int filterid;
     private boolean termsflag;
     private  Button termsButton;
+    private TextView t1,t2;
+    private String[] lista;
+
+    private boolean ActByUserFlag;
 
 
     private RelativeLayout terms;
@@ -51,16 +56,12 @@ public class ActividadesList extends AppCompatActivity {
 
 
 
-
-
-
-        adaptadorActividades = new ActividadAdapter(this,listaActividades);
-        LvActividades.setAdapter(adaptadorActividades);
-
         categories = findViewById(R.id.spinner_categories);
         filter = findViewById(R.id.spinner_selection);
 
         contacs= findViewById(R.id.Contacs);
+        t1 = findViewById(R.id.textView1);
+        t2 = findViewById(R.id.texView2);
 
         terms = findViewById(R.id.terms);
         termsButton = findViewById(R.id.ternsButton);
@@ -71,7 +72,10 @@ public class ActividadesList extends AppCompatActivity {
             terms.setVisibility(View.INVISIBLE);
         }
 
-
+        adaptadorActividades = new ActividadAdapter(this,listaActividades);
+        LvActividades.setAdapter(adaptadorActividades);
+        ActByUserFlag = mc.getFlagActByUser();
+        lista = mc.getIDLiscaAcc();
 
 
 
@@ -138,8 +142,26 @@ public class ActividadesList extends AppCompatActivity {
         filter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                 filterid = position;
-                setFilter(position);
+                if (ActByUserFlag){
+                    setFilterAct(mc.getSelectecContact().getID());
+                    categories.setVisibility(View.INVISIBLE);
+                    filter.setVisibility(View.INVISIBLE);
+                    contacs.setVisibility(View.INVISIBLE);
+                    t1.setVisibility(View.INVISIBLE);
+                    t2.setVisibility(View.INVISIBLE);
+                    terms.setVisibility(View.INVISIBLE);
+                }else {
+                    if(cagtegoryid == 3){
+                        setFilterAct(lista[position]);
+                    }else {
+                        setFilter(position);
+                    }
+
+
+                }
+
             }
 
             @Override
@@ -168,9 +190,7 @@ public class ActividadesList extends AppCompatActivity {
                 };
                 break;
             case 3:
-                arraySpinnerFilter = new  String[] {
-                        "Grupos culturales","Asociación","Grupo de interes"
-                };
+                arraySpinnerFilter = mc.getLiscaAcc();
                 break;
 
         }
@@ -186,4 +206,13 @@ public class ActividadesList extends AppCompatActivity {
                 adaptadorActividades.notifyDataSetChanged();
 
     }
+
+    private void setFilterAct(String ID){
+        listaActividades.clear();
+        listaActividades.addAll(mc.getLista_Actividadesbyaccount(ID));
+        adaptadorActividades.notifyDataSetChanged();
+
+    }
+
+
 }

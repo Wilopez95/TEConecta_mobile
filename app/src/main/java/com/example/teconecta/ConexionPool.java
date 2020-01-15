@@ -185,6 +185,27 @@ public class ConexionPool {
 
     }
 
+    public void getAssistance(String id){
+        Log.d("RESPONSE", "GET ASISTANCE");
+        String url = "https://teconecta-noisy-rhinocerous-te.mybluemix.net/assistance/count/5e1e37d235c6c2009d31bc72";
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,url,null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d("RESPONSE.ERROR", response.toString());
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("RESPONSE.ERROR", error.toString());
+                    }
+                });
+
+        queue.add(request);
+
+    }
+
 
     public ArrayList<Actividad> getListaActividades(){
         return  lista_Actividades;

@@ -1,5 +1,8 @@
 package com.example.teconecta;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Actividad {
     private String ID;
     private String Nombre;
@@ -154,4 +157,5 @@ public class Actividad {
     public void setSede(String sede) {
         Sede = sede;
     }
+
 }

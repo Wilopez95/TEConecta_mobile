@@ -9,9 +9,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,6 +28,7 @@ public class Actividad_Detalle extends AppCompatActivity {
     private TextView user;
     private TextView registertxt;
     private TextView date;
+    private ImageView imagen;
 
     private ImageButton register;
     private ImageButton notificate;
@@ -61,6 +65,8 @@ public class Actividad_Detalle extends AppCompatActivity {
         user = findViewById(R.id.user);
         registertxt= findViewById(R.id.registertxt);
 
+        imagen = findViewById(R.id.imageView3);
+
         date = findViewById(R.id.date);
         register = findViewById(R.id.register_button);
         notificate = findViewById(R.id.notification_button);
@@ -78,6 +84,13 @@ public class Actividad_Detalle extends AppCompatActivity {
         contacto = mc.getContactobyID(fk_cuenta);
         user.setText(contacto.getNombre());
         date.setText(mc.formatedDate("\n",thisActividad.getFecha()));
+
+
+        Picasso.get()
+                .load(thisActividad.getUrlImagen())
+                .placeholder(R.drawable.defaultimg)
+                .error(R.drawable.defaultimg)
+                .into(imagen);
 
 
         if(!thisActividad.getAsistencia()){

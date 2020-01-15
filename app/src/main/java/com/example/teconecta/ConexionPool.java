@@ -19,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,7 +57,7 @@ public class ConexionPool {
     public void getActivities(final ServerCallback callback){
         Log.d("RESPONSE", "GET ACTIVIDADES");
 
-        String url = "https://teconecta-noisy-rhinocerous-te.mybluemix.net/allactivities";
+        String url = "https://teconecta-noisy-rhinocerous-te.mybluemix.net/allactivitiesfeed";
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,url,null, new Response.Listener<JSONArray>() {
             @Override
@@ -80,9 +81,10 @@ public class ConexionPool {
                         String state = actividad.getString("state");
                         String space = actividad.getString("space");
 
-                        lista_Actividades.add(new Actividad(id,name,description,date,location,type,place,urlImgActivity,timeI,timeF,fk_user,state,Boolean.parseBoolean(assistance),Integer.parseInt(space)));
+                        lista_Actividades.add(new Actividad(id,name,description,date,place,type,location,urlImgActivity,timeI,timeF,fk_user,state,Boolean.parseBoolean(assistance),Integer.parseInt(space)));
 
                     }
+
                     callback.onSuccess(response);
 
 

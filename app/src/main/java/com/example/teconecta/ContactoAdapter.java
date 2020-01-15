@@ -41,7 +41,7 @@ public class ContactoAdapter extends BaseAdapter {
         TextView nombre = convertView.findViewById(R.id.name);
         TextView telefono= convertView.findViewById(R.id.phone);
 
-        nombre.setText(Item.getID());
+        nombre.setText(Item.getNombre());
         telefono.setText(Item.getTelefono());
         return convertView;
     }

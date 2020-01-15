@@ -13,7 +13,7 @@ import java.util.concurrent.Delayed;
 
 public class splash_activity extends AppCompatActivity {
 
-    private final int DURACION_SPLASH = 3000;
+    private final int DURACION_SPLASH = 4000;
     private MainController mc;
 
     @Override

@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -48,6 +50,15 @@ public class ActividadAdapter extends BaseAdapter {
         TextView ubicacion = convertView.findViewById(R.id.ubicacion);
         TextView tipo = convertView.findViewById(R.id.tipo);
         TextView date = convertView.findViewById(R.id.date);
+        ImageView imagen = convertView.findViewById(R.id.imageView);
+
+
+
+        Picasso.get()
+                .load(Item.getUrlImagen())
+                .placeholder(R.drawable.defaultimg)
+                .error(R.drawable.defaultimg)
+                .into(imagen);
 
 
         nombre.setText(Item.getNombre().toUpperCase());

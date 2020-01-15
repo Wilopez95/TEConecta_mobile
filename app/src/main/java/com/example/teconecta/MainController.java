@@ -181,6 +181,7 @@ public class MainController {
             @Override
             public void onSuccess(JSONArray result) {
                 lista_Actividades.addAll(cp.getListaActividades());
+
             }
         });
         cp.getContacs(new ServerCallback() {
@@ -238,41 +239,43 @@ public class MainController {
     }
 
     public String formatedDate(String separador , String date){
-        String formatedDate="";
-        //MES/DIA/AÑO
-        String[] arrOfStr = date.split("/", 3);
-        formatedDate = arrOfStr[1]+separador;
-        String Mes = arrOfStr[0];
+        String formatedDate="DEV";
+        String[] arrOfDates = date.split("T", 2);
+        String realdate = arrOfDates[0];
+        //AÑO/MES/DIA/
+        String[] arrOfStr = realdate.split("-", 3);
+        formatedDate = arrOfStr[2]+separador;
+        String Mes = arrOfStr[1];
 
-        if (isToday(date)){
+        if (isToday(realdate)){
             formatedDate = "HOY";
-        }else {
+        }else{
             switch (Mes) {
-                case "1":
+                case "01":
                     formatedDate = formatedDate + "ENE";
                     break;
-                case "2":
+                case "02":
                     formatedDate = formatedDate + "FEB";
                     break;
-                case "3":
+                case "03":
                     formatedDate = formatedDate + "MAR";
                     break;
-                case "4":
+                case "04":
                     formatedDate = formatedDate + "ABR";
                     break;
-                case "5":
+                case "05":
                     formatedDate = formatedDate + "MAY";
                     break;
-                case "6":
+                case "06":
                     formatedDate = formatedDate + "JUN";
                     break;
-                case "7":
+                case "07":
                     formatedDate = formatedDate + "JUL";
                     break;
-                case "8":
+                case "08":
                     formatedDate = formatedDate + "AGO";
                     break;
-                case "9":
+                case "09":
                     formatedDate = formatedDate + "SET";
                     break;
                 case "10":
@@ -293,17 +296,19 @@ public class MainController {
         java.util.Date fecha = new Date();
         String strDateFormat = "MM/dd/y";
         SimpleDateFormat objSDF = new SimpleDateFormat(strDateFormat);
-        //Log.d("RESPONSE_DATE_DAY", objSDF.format(fecha));
+        //Log.d("RESPONSE_DATE_DAY_SYS", objSDF.format(fecha));
+        //M/D/A
+        //Log.d("RESPONSE_DATE_DAY_ACT", date);
 
-        String[] dateArr = date.split("/", 3);
+        String[] dateArr = date.split("-", 3);
         String[] todayArr = objSDF.format(fecha).split("/", 3);
 
-        if(dateArr[2].equals(todayArr[2])){
-            //Log.d("RESPONSE_DATE_YEAR", dateArr[2] + " -AÑO- "+todayArr[2]);
-            if(dateArr[1].equals(todayArr[1])){
+        if(dateArr[0].equals(todayArr[2])){
+            //Log.d("RESPONSE_DATE_YEAR", dateArr[0] + " -AÑO- "+todayArr[2]);
+            if(dateArr[2].equals(todayArr[1])){
                 //Log.d("RESPONSE_DATE_MONTH", dateArr[1] + " -MES- "+todayArr[1]);
-                if(Integer.parseInt(dateArr[0])- Integer.parseInt(todayArr[0]) == 0){
-                    //Log.d("RESPONSE_DATE_DAY", dateArr[0] + " -DIA- "+todayArr[0]);
+                if(Integer.parseInt(dateArr[1])- Integer.parseInt(todayArr[0]) == 0){
+                   // Log.d("RESPONSE_DATE_DAY", dateArr[0] + " -DIA- "+todayArr[0]);
                     return true;
 
                 }

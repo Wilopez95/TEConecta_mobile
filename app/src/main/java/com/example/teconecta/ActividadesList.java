@@ -159,7 +159,7 @@ public class ActividadesList extends AppCompatActivity {
                 break;
             case 1:
                 arraySpinnerFilter = new  String[] {
-                        "Cartago","San Jose","San Carlos","Limon","Alajuela"
+                        "Cartago","San José","San Carlos","Limón","Alajuela"
                 };
                 break;
             case 2:

@@ -26,6 +26,7 @@ public class MainController {
 
 
     private ArrayList<Contacto> lista_Contactos = new ArrayList<>();
+    private ArrayList<Contacto> lista_Contactos_filtrados = new ArrayList<>();
 
 
     private static synchronized void createinstance() {
@@ -65,9 +66,7 @@ public class MainController {
     //DEV TEST DELETE ON PRODUCTION!!
 
 
-    public ArrayList<Contacto> getListContac() {
-        return lista_Contactos;
-    }
+
 
     public ArrayList<Actividad> getLista_Actividadesbyaccount(String user){
         lista_Actividades_Filtrada.clear();
@@ -77,6 +76,25 @@ public class MainController {
             }
         }
         return lista_Actividades_Filtrada;
+    }
+
+    public ArrayList<Contacto> getListContac() {
+        return lista_Contactos;
+    }
+
+    public ArrayList<Contacto> getListContacsFilter(String s){
+        lista_Contactos_filtrados.clear();
+        for (int i=0;i<lista_Contactos.size();i++){
+            if(findMach(s.toUpperCase(),lista_Contactos.get(i).getNombre().toUpperCase())){
+                lista_Contactos_filtrados.add(lista_Contactos.get(i));
+            }
+        }
+
+        return lista_Contactos_filtrados;
+    }
+
+    private boolean findMach(String a, String b){
+        return b.contains(a);
     }
 
     public ArrayList<Actividad> getListActivities(int category, int filter) {

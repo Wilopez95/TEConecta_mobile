@@ -329,7 +329,7 @@ public class MainController {
         return formatedDate;
     }
 
-    private boolean isToday(String date){
+    public boolean isToday(String date){
         java.util.Date fecha = new Date();
         String strDateFormat = "MM/dd/y";
         SimpleDateFormat objSDF = new SimpleDateFormat(strDateFormat);

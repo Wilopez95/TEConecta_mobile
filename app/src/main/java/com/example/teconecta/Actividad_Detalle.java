@@ -1,8 +1,10 @@
 package com.example.teconecta;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -22,6 +24,8 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Actividad_Detalle extends AppCompatActivity {
@@ -47,6 +51,7 @@ public class Actividad_Detalle extends AppCompatActivity {
 
     NotificationCompat.Builder notificacion;
     private static final int idUnica = 123456;
+
 
     private MainController mc;
 
@@ -77,9 +82,13 @@ public class Actividad_Detalle extends AppCompatActivity {
         register = findViewById(R.id.register_button);
         notificate = findViewById(R.id.notification_button);
 
+
         contac = findViewById(R.id.Contact);
 
         this.thisActividad = mc.getSelectecActivity();
+
+
+
 
         name.setText(thisActividad.getNombre().toUpperCase());
         time.setText(thisActividad.getHoraI()+" - "+thisActividad.getHoraF());
@@ -117,10 +126,36 @@ public class Actividad_Detalle extends AppCompatActivity {
             }
         });
 
+
+
+
+
+
         notificate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "NOTIFICACION", Toast.LENGTH_SHORT).show();
+
+                String[] dateArr = thisActividad.getFecha().split("T", 2);
+                if (!mc.isToday(dateArr[0])){
+                    Toast.makeText(getApplicationContext(),"El dia del evento podras activar una notificación",Toast.LENGTH_LONG).show();
+                }else {
+                    String Hora=thisActividad.getHoraI();
+                    String[] timeArr = Hora.split(":", 3);
+                    Log.d("TIME0", Hora);
+                    Calendar c = Calendar.getInstance();
+                    Log.d("TIME1", c.getTime().toString());
+
+                    c.set(Calendar.HOUR_OF_DAY,Integer.parseInt(timeArr[0]));
+                    c.set(Calendar.MINUTE,Integer.parseInt(timeArr[1]));
+                    c.set(Calendar.SECOND,0);
+                    c.add(Calendar.MINUTE,-30);
+                    Log.d("TIME2", c.getTime().toString());
+                    Toast.makeText(getApplicationContext(),"Se te notificara 30 minutos antes de este evento",Toast.LENGTH_LONG).show();
+                    startAlarm(c);
+                }
+
+
+
             }
         });
 
@@ -132,6 +167,14 @@ public class Actividad_Detalle extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void startAlarm(Calendar c){
+        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        Intent intent= new  Intent(this,AlertReciver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,1 ,intent,0);
+
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),pendingIntent);
     }
     
 }

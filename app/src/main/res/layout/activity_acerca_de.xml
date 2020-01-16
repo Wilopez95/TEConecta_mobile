@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".splash_activity">
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Está plataforma ha sido desarrollada como parte del curso: Proyecto de Ingeniería de Software en el periodo de verano 2019 de la escuela de Ingeniería en Computación del Tecnológico de Costa Rica por los estudiantes: Carlos Gomez Soza Email: cargomez@ic-itcr.ac.cr Wilson López Rubi Email: willopez@ic-itcr.ac.cr Juan José Solano Email: juasolano@ic-itcr.ac.cr"
+        android:textAlignment="center"
+        android:textColor="@color/dark_blue"
+        android:padding="20dp"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+</RelativeLayout>

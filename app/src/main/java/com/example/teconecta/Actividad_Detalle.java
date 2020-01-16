@@ -154,8 +154,6 @@ public class Actividad_Detalle extends AppCompatActivity {
                     startAlarm(c);
                 }
 
-
-
             }
         });
 

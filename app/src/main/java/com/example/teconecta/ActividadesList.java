@@ -40,6 +40,7 @@ public class ActividadesList extends AppCompatActivity {
 
 
     private RelativeLayout terms;
+    private RelativeLayout footer;
 
 
     private ArrayList<Actividad> listaActividades = new ArrayList<>();
@@ -64,6 +65,7 @@ public class ActividadesList extends AppCompatActivity {
         t2 = findViewById(R.id.texView2);
 
         terms = findViewById(R.id.terms);
+        footer = findViewById(R.id.footer_RL);
         termsButton = findViewById(R.id.ternsButton);
 
         SharedPreferences prefs = getSharedPreferences("My_terms_flag", MODE_PRIVATE);
@@ -125,6 +127,15 @@ public class ActividadesList extends AppCompatActivity {
         adapterCategory.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categories.setAdapter(adapterCategory);
 
+
+        footer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AcercaDe.class);
+                startActivity(intent);
+            }
+        });
+
         categories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -151,7 +162,7 @@ public class ActividadesList extends AppCompatActivity {
                     contacs.setVisibility(View.INVISIBLE);
                     t1.setVisibility(View.INVISIBLE);
                     t2.setVisibility(View.INVISIBLE);
-                    terms.setVisibility(View.INVISIBLE);
+                    footer.setVisibility(View.INVISIBLE);
                 }else {
                     if(cagtegoryid == 3){
                         setFilterAct(lista[position]);

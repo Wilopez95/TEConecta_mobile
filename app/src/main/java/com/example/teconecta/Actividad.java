@@ -102,7 +102,16 @@ public class Actividad {
     }
 
     public String getHoraI() {
-        return HoraI;
+
+        String[] arrOfTimes = HoraI.split(":", 3);
+        if (arrOfTimes[1].length()==1) {
+            if(arrOfTimes[1].equals("0")){
+                arrOfTimes[1]="00";
+            }else{
+                arrOfTimes[1]="0"+arrOfTimes[1];
+            }
+        }
+        return arrOfTimes[0]+":"+arrOfTimes[1];
     }
 
     public void setHoraI(String horaI) {
@@ -110,7 +119,16 @@ public class Actividad {
     }
 
     public String getHoraF() {
-        return HoraF;
+
+        String[] arrOfTimes = HoraF.split(":", 3);
+        if (arrOfTimes[1].length()==1) {
+            if(arrOfTimes[1].equals("0")){
+                arrOfTimes[1]="00";
+            }else{
+                arrOfTimes[1]="0"+arrOfTimes[1];
+            }
+        }
+        return arrOfTimes[0]+":"+arrOfTimes[1];
     }
 
     public void setHoraF(String horaF) {

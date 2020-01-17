@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -78,6 +79,9 @@ public class ActividadesList extends AppCompatActivity {
         LvActividades.setAdapter(adaptadorActividades);
         ActByUserFlag = mc.getFlagActByUser();
         lista = mc.getIDLiscaAcc();
+
+        listaActividades.clear();
+        adaptadorActividades.notifyDataSetChanged();
 
 
 
@@ -215,6 +219,9 @@ public class ActividadesList extends AppCompatActivity {
                 listaActividades.clear();
                 listaActividades.addAll(mc.getListActivities(cagtegoryid,i));
                 adaptadorActividades.notifyDataSetChanged();
+                if(mc.getListActivities(cagtegoryid,i).size()==0){
+                    Toast.makeText(getApplicationContext(),"¡No existen eventos con estas caracteristicas!",Toast.LENGTH_LONG).show();
+                }
 
     }
 
@@ -222,6 +229,9 @@ public class ActividadesList extends AppCompatActivity {
         listaActividades.clear();
         listaActividades.addAll(mc.getLista_Actividadesbyaccount(ID));
         adaptadorActividades.notifyDataSetChanged();
+        if(mc.getLista_Actividadesbyaccount(ID).size()==0){
+            Toast.makeText(getApplicationContext(),"¡No existen eventos con estas caracteristicas!",Toast.LENGTH_LONG).show();
+        }
 
     }
 

@@ -29,7 +29,7 @@
             android:layout_marginLeft="3dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dip"
-            android:background="@color/red"
+            android:background="#DD14103A"
             android:padding="12dip"
             android:text="HOY"
             android:textColor="#ffffffff" />

@@ -125,7 +125,7 @@ public class ConexionPool {
                         String urlImgProfile =  contacto.getString("urlImgProfile");
                         String manager = contacto.getString("manager");
 
-                        lista_Contactos.add(new Contacto(id,name,description,phone,location,place,urlImgProfile,manager));
+                        lista_Contactos.add(new Contacto(id,name,description,phone,place,location,urlImgProfile,manager));
                     }
                     callback.onSuccess(response);
 

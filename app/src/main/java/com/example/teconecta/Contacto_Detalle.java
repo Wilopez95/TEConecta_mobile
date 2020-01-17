@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -62,9 +63,14 @@ public class Contacto_Detalle extends AppCompatActivity {
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mc.setFlagActByUser(true);
-                Intent intent = new Intent(getApplicationContext(), ActividadesList.class);
-                startActivity(intent);
+                if(mc.getLista_Actividadesbyaccount(thisContacto.getID()).size()==0){
+                    Toast.makeText(getApplicationContext(),"¡No existen eventos de esta cuenta!",Toast.LENGTH_LONG).show();
+                }else {
+                    mc.setFlagActByUser(true);
+                    Intent intent = new Intent(getApplicationContext(), ActividadesList.class);
+                    startActivity(intent);
+                }
+
             }
         });
 

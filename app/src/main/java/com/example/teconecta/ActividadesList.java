@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class ActividadesList extends AppCompatActivity {
 
@@ -80,8 +81,7 @@ public class ActividadesList extends AppCompatActivity {
         ActByUserFlag = mc.getFlagActByUser();
         lista = mc.getIDLiscaAcc();
 
-        listaActividades.clear();
-        adaptadorActividades.notifyDataSetChanged();
+
 
 
 
@@ -186,6 +186,12 @@ public class ActividadesList extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mc.setFlagActByUser(false);
+    }
+
 
     private void setCategory(int i){
         switch(i) {
@@ -222,6 +228,7 @@ public class ActividadesList extends AppCompatActivity {
                 if(mc.getListActivities(cagtegoryid,i).size()==0){
                     Toast.makeText(getApplicationContext(),"¡No existen eventos con estas caracteristicas!",Toast.LENGTH_LONG).show();
                 }
+
 
     }
 

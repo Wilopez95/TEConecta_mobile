@@ -204,6 +204,7 @@ public class MainController {
         }
     }
 
+
     public String[] getIDLiscaAcc(){
         String[] lista = new String[lista_Contactos.size()];
         for (int i = 0; i< lista_Contactos.size(); i++){
@@ -222,6 +223,9 @@ public class MainController {
 
     public void getData() {
 
+        lista_Actividades.clear();
+        lista_Contactos.clear();
+
         cp = ConexionPool.getInstance();
         cp.initQueue(ActiveContex);
         cp.getActivities(new ServerCallback() {
@@ -237,7 +241,6 @@ public class MainController {
                 lista_Contactos.addAll(cp.getLista_Contactos());
             }
         });
-
 
     }
 

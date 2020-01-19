@@ -55,7 +55,8 @@ public class ConexionPool {
 
 
     public void getActivities(final ServerCallback callback){
-        Log.d("RESPONSE", "GET ACTIVIDADES");
+        lista_Actividades.clear();
+        //Log.d("RESTAR", "GET ACTIVIDADES");
 
         String url = "https://teconecta-noisy-rhinocerous-te.mybluemix.net/allactivitiesfeed";
 
@@ -107,7 +108,8 @@ public class ConexionPool {
     }
 
     public void getContacs(final ServerCallback callback){
-        //Log.d("RESPONSE", "GET CONTACS");
+        lista_Contactos.clear();
+        //Log.d("RESTAR", "GET CONTACS");
         String url = "https://teconecta-noisy-rhinocerous-te.mybluemix.net/account";
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,url,null, new Response.Listener<JSONArray>() {

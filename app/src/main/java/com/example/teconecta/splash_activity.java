@@ -24,6 +24,7 @@ public class splash_activity extends AppCompatActivity {
         mc =  MainController.getInstance();
         mc.setActiveContex(this);
         mc.getData();
+        //mc.filltest();
 
 
 
@@ -32,10 +33,6 @@ public class splash_activity extends AppCompatActivity {
             public void run(){
                 Intent intent = new Intent(splash_activity.this, ActividadesList.class);
                 startActivity(intent);
-                ///DEV
-                ConexionPool cp = ConexionPool.getInstance();
-                cp.getAssistance("a");
-                ///DEV
                 finish();
             };
         }, DURACION_SPLASH);

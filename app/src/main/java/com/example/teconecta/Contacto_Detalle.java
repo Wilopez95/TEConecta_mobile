@@ -48,6 +48,7 @@ public class Contacto_Detalle extends AppCompatActivity {
         description.setText(thisContacto.getDescripcion());
         phone.setText("Teléfono : "+thisContacto.getTelefono());
         location.setText("Ubicacion : "+thisContacto.getDireccion());
+        email.setText("Correo : "+thisContacto.getID());
         place.setText("Sede : "+thisContacto.getSede());
         manager.setText("Encargado : "+thisContacto.getEncargado());
 
